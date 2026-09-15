@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: gsc-mcp
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: node dist/server.js
+    healthCheckPath: /health
+    envVars:
+      - key: MCP_SECRET
+        sync: false
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: DEFAULT_SITE
+        value: sc-domain:thesurferweligama.com
