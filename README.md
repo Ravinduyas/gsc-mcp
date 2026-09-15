@@ -50,7 +50,13 @@ docker run -d --env-file .env -p 3000:3000 gsc-mcp
 ```
 Point `gsc.yourdomain.com` at it with an HTTPS reverse proxy (Caddy: `gsc.yourdomain.com { reverse_proxy localhost:3000 }`).
 
-**Railway / Render / Fly:** deploy the repo, set the three env vars, attach a custom domain in the dashboard, done.
+**Render (one click):**
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Ravinduyas/gsc-mcp)
+
+Reads `render.yaml` and only prompts for `MCP_SECRET` and `GOOGLE_SERVICE_ACCOUNT_JSON`.
+
+**Railway / Fly:** deploy the repo, set the three env vars, attach a custom domain in the dashboard, done.
 
 **Vercel:** the app uses a long-lived Express listener, so Vercel serverless is not a drop-in. Use one of the above, or ask Claude to port the two files into a Next.js route handler with `mcp-handler`.
 
