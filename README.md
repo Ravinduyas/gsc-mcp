@@ -39,7 +39,20 @@ Generate a secret with `openssl rand -hex 24`.
 
 Health check: `GET /health` → `{"ok":true}`.
 
-## 3. Put it on your domain
+## 3. Use it in Claude Code (free, no hosting)
+
+Hosting is only needed for claude.ai custom connectors. Claude Code can spawn the server
+itself over stdio — no port, no `MCP_SECRET`, no deployment:
+
+```bash
+npm install && npm run build
+claude mcp add gsc --scope user -- node --env-file=/abs/path/to/.env /abs/path/to/dist/stdio.js
+claude mcp list        # gsc - ✔ Connected
+```
+
+Only `GOOGLE_SERVICE_ACCOUNT_JSON` (and optionally `DEFAULT_SITE`) are read in this mode.
+
+## 4. Put it on your domain
 
 Any of these work; the server is stateless so it scales horizontally and needs no sticky sessions.
 
@@ -60,7 +73,7 @@ Reads `render.yaml` and only prompts for `MCP_SECRET` and `GOOGLE_SERVICE_ACCOUN
 
 **Vercel:** the app uses a long-lived Express listener, so Vercel serverless is not a drop-in. Use one of the above, or ask Claude to port the two files into a Next.js route handler with `mcp-handler`.
 
-## 4. Add it to Claude
+## 5. Add it to Claude (hosted connector)
 
 Claude.ai → **Settings → Connectors → Add custom connector**
 
