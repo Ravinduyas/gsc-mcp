@@ -66,6 +66,18 @@ Then enable it in the chat and ask, for example:
 
 > Audit page indexing for thesurferweligama.com using the sitemap at https://thesurferweligama.com/sitemap.xml
 
+## Troubleshooting
+
+**"Error 400: redirect_uri_mismatch" / "Access blocked: This app's request is invalid"**
+
+You created an *OAuth client ID* instead of a *service account*. This connector never uses OAuth — there is no browser sign-in and no redirect URI. Delete the OAuth client (it isn't needed) and follow step 1 above: **IAM & Admin → Service Accounts**, not **APIs & Services → Credentials → OAuth client ID**.
+
+A correct key file starts with `"type": "service_account"` and contains `"private_key"`. An OAuth client file contains `"client_id"`, `"client_secret"` and `"redirect_uris"` — that one will not work here.
+
+**Tools return "The caller does not have permission"**
+
+The service account email is not a user on the property, or has less than **Full** permission. Add it in Search Console → Settings → Users and permissions.
+
 ## Security notes
 
 - Anyone with the full URL can read your Search Console data. Rotate `MCP_SECRET` if it leaks; the server 404s on any other path.
