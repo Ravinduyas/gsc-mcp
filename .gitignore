@@ -2,3 +2,9 @@ node_modules
 dist
 .env
 *.json.key
+# Google service-account keys — never commit these.
+*-[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*.json
+service-account*.json
+credentials*.json
+key.json
+*.b64
