@@ -8,3 +8,6 @@ service-account*.json
 credentials*.json
 key.json
 *.b64
+*base64*.txt
+*-key.txt
+gsc-key-*.txt
